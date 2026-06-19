@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rejamespeip67.github.io/webhome-aiyouxi-com-cn/sitemap.xml

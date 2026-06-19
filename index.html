@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 简明指南与访问手记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: #f4f9fc;
+            color: #1b2f3a;
+            line-height: 1.7;
+            padding: 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 头部 — 简洁博客题 */
+        .blog-header {
+            border-bottom: 2px solid #c6e2e9;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .blog-title {
+            font-size: 1.9rem;
+            font-weight: 550;
+            letter-spacing: -0.3px;
+            color: #0b4a57;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .blog-title span {
+            background: #daf0f5;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #1d6e7e;
+            letter-spacing: 0.3px;
+        }
+
+        .meta-line {
+            font-size: 0.9rem;
+            color: #537b86;
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1rem;
+        }
+
+        /* 卡片网格 — 简洁克制 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.4rem;
+            margin: 1.6rem 0 2.2rem;
+        }
+
+        @media (min-width: 580px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.2rem 1.2rem 1.4rem;
+            box-shadow: 0 4px 10px rgba(0, 40, 50, 0.04), 0 1px 3px rgba(23, 78, 90, 0.06);
+            border-left: 4px solid #78c4d6;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(36, 116, 134, 0.08);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 540;
+            color: #115b6b;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .card h3 small {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #6a9fad;
+            background: #e7f3f7;
+            padding: 0 0.4rem;
+            border-radius: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2b4954;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .footnote {
+            font-size: 0.8rem;
+            color: #6d8f9a;
+            border-top: 1px solid #e2eff3;
+            padding-top: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        /* 正文段落 — 叙述感 */
+        .essay {
+            background: #ffffffd9;
+            backdrop-filter: blur(1px);
+            padding: 1.4rem 1.6rem;
+            border-radius: 18px;
+            box-shadow: 0 2px 6px rgba(27, 67, 78, 0.03);
+            margin-bottom: 2rem;
+        }
+
+        .essay h2 {
+            font-size: 1.4rem;
+            font-weight: 520;
+            color: #0f5566;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #69bccf;
+            padding-left: 1rem;
+        }
+
+        .essay p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.8em;
+        }
+
+        .essay p:first-of-type {
+            text-indent: 0;
+        }
+
+        .essay .quote-line {
+            background: #e2f1f5;
+            padding: 1rem 1.2rem;
+            border-radius: 30px 10px 30px 10px;
+            font-style: normal;
+            color: #104e5d;
+            margin: 1.6rem 0 1rem;
+            text-indent: 0;
+            font-size: 0.95rem;
+            border-left: 4px solid #4eaec6;
+            box-shadow: 0 2px 4px rgba(58, 134, 153, 0.06);
+        }
+
+        .essay .quote-line strong {
+            font-weight: 560;
+            color: #064452;
+        }
+
+        .link-sentence {
+            font-size: 1rem;
+            background: #f0f8fb;
+            padding: 1rem 1.4rem;
+            border-radius: 40px 10px 40px 10px;
+            margin: 1.8rem 0 0.6rem;
+            text-indent: 0;
+            display: inline-block;
+            border: 1px solid #b9dbe6;
+            line-height: 1.6;
+        }
+
+        .link-sentence a {
+            color: #0a6a7e;
+            text-decoration: none;
+            font-weight: 540;
+            border-bottom: 2px solid #9acfdf;
+            transition: border 0.1s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #0f7f96;
+        }
+
+        /* 引用提示块 */
+        .tip-block {
+            background: #eaf6fa;
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            margin: 2.2rem 0 1.8rem;
+            border: 1px solid #c0dee9;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 0.8rem;
+        }
+
+        .tip-block .tip-icon {
+            font-size: 1.2rem;
+            background: #bef0fd;
+            width: 2rem;
+            height: 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40%;
+            color: #0a6072;
+        }
+
+        .tip-block .tip-text {
+            flex: 1;
+            min-width: 160px;
+            font-size: 0.95rem;
+            color: #174f5e;
+        }
+
+        .tip-block .tip-text a {
+            color: #096c81;
+            text-decoration: underline dotted 1.5px #7bbccf;
+            text-underline-offset: 4px;
+        }
+
+        .tip-block .tip-text a:hover {
+            text-decoration: underline solid #0a7c94;
+        }
+
+        /* FAQ 摘要 — 紧凑 */
+        .faq-mini {
+            background: #ffffffd0;
+            padding: 1.2rem 1.4rem;
+            border-radius: 18px;
+            margin: 1.4rem 0 2rem;
+            border: 1px solid #d6e9f0;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e0edf2;
+            padding-bottom: 0.4rem;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 520;
+            color: #1b5a69;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .faq-mini summary::before {
+            content: "▹";
+            color: #6bbacf;
+            margin-right: 6px;
+            font-size: 1rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "▾";
+        }
+
+        .faq-mini .faq-answer {
+            padding: 0.4rem 0 0.4rem 1.2rem;
+            font-size: 0.9rem;
+            color: #2d5b68;
+        }
+
+        /* 底部 — 访问句 */
+        .blog-footer {
+            margin-top: auto;
+            border-top: 1px solid #c6dce4;
+            padding-top: 1.2rem;
+            text-align: left;
+            font-size: 0.9rem;
+            color: #3b6e7c;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem 1rem;
+        }
+
+        .blog-footer .visit-note {
+            background: #daeef5;
+            padding: 0.3rem 1rem 0.3rem 1.2rem;
+            border-radius: 30px;
+            color: #0c4c5a;
+            font-size: 0.85rem;
+            border: 1px solid #b1d5e2;
+        }
+
+        .blog-footer .visit-note a {
+            color: #085d70;
+            text-decoration: none;
+            font-weight: 550;
+            border-bottom: 1px solid #90c9db;
+        }
+
+        .blog-footer .visit-note a:hover {
+            border-bottom: 2px solid #0d7187;
+        }
+
+        .blog-footer .credit {
+            opacity: 0.65;
+            font-size: 0.8rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dotted #bddae4;
+            margin: 1.8rem 0;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 460px) {
+            .blog-title {
+                font-size: 1.6rem;
+                flex-wrap: wrap;
+            }
+            .essay {
+                padding: 1rem 1rem;
+            }
+            .link-sentence {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            .card-grid {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <header class="blog-header">
+        <div class="blog-title">
+            爱游戏 · 简明手记
+            <span>指南</span>
+        </div>
+        <div class="meta-line">
+            <span>〈 一段轻叙述 〉</span>
+            <span>· 访问与提醒</span>
+        </div>
+    </header>
+
+    <!-- 网格卡片：特点与场景 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>轻量入口 <small>01</small></h3>
+            <p>围绕「爱游戏」构建的站点，不堆砌繁复导航，更倾向直接、干净的浏览体验。你看到的就是主要路径。</p>
+            <div class="footnote">适合快速查阅与日常使用</div>
+        </div>
+        <div class="card">
+            <h3>场景提醒 <small>02</small></h3>
+            <p>不论是在移动端还是桌面，页面结构都经过适配，没有多余弹层或强制跳转。专注内容本身。</p>
+            <div class="footnote">响应式网格 · 克制设计</div>
+        </div>
+    </div>
+
+    <!-- 主体叙述：正文 + 引用提示 -->
+    <div class="essay">
+        <h2>从一篇指南说起</h2>
+        <p>如果你恰好对游戏资讯、社区讨论或工具索引有些兴趣，可能会遇到形形色色的站点。有些页面信息过载，有些又过于简陋。而这次我们想聊的，是另一种节奏——更像一份简明笔记，把必要的东西放在眼前，其余交给选择。</p>
+        <p>很多人习惯先扫一眼布局，再决定是否深入。因此卡片式的分区和清晰的分段，或许比铺满链接更友好。下面这段引用，来自一位常逛社区的用户反馈：</p>
+        <div class="quote-line">
+            <strong>“</strong> 我不需要炫目的动效，能让我三秒内找到想看的板块，就已经是好体验。<strong>”</strong>
+        </div>
+        <p>所以页面里没有复杂的层级，主要入口和说明都放在可见位置。无论你是初次接触还是常客，都不必花时间适应导航逻辑。保持克制，反而让访问更从容。</p>
+
+        <div class="link-sentence">
+            ▲ 如果你还没去过，不妨直接试试 <a href="https://webhome-aiyouxi.com.cn">爱游戏</a> —— 一个以游戏为线索的轻量站点。
+        </div>
+    </div>
+
+    <!-- 引用提示块 + 额外访问句 -->
+    <div class="tip-block">
+        <span class="tip-icon">ⓘ</span>
+        <span class="tip-text">
+            <strong>访问提示：</strong> 建议使用系统默认浏览器，关闭不必要的插件拦截。关于更具体的配置，可以参考 <a href="https://webhome-aiyouxi.com.cn">爱游戏</a> 首页的说明区。
+        </span>
+    </div>
+
+    <!-- FAQ 摘要 —— 差异化模块 -->
+    <div class="faq-mini">
+        <details>
+            <summary>这个站点主要适合哪类用户？</summary>
+            <div class="faq-answer">对游戏内容有日常查阅需求，同时不希望被广告或弹层干扰的浏览者。既适合快速检索信息，也适合偶尔逛逛社区板块。</div>
+        </details>
+        <details>
+            <summary>移动端浏览有什么需要注意？</summary>
+            <div class="faq-answer">页面采用自适应网格，无需缩放。部分交互元素（如折叠块）在触屏上响应正常。若遇到显示异常，可尝试刷新或清理缓存。</div>
+        </details>
+        <details>
+            <summary>为什么强调“简明指南”？</summary>
+            <div class="faq-answer">我们认为好的网站不需要厚厚的说明书。入口清晰、段落分明、引用自然，就是最朴素的引导。</div>
+        </details>
+    </div>
+
+    <!-- 底部 —— 访问句 + 简洁版权 -->
+    <footer class="blog-footer">
+        <div class="visit-note">
+            ⚡ 如果有空，可以逛逛 <a href="https://webhome-aiyouxi.com.cn">爱游戏</a> · 我们保持简单
+        </div>
+        <div class="credit">
+            · 卡片随笔 ·
+        </div>
+    </footer>
+</div>
+</body>
+</html>
